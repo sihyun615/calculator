@@ -6,6 +6,9 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
+        int[] results = new int[10];  //10개의 연산 결과들을 저장할 배열
+        int idx = 0;  //배열 인덱스
+
         Scanner sc = new Scanner(System.in);
 
 
@@ -47,6 +50,8 @@ public class App {
             if(operator!='/' || num2!=0){  //나눗셈 연산에서 분모(두번째 정수)가 0인 경우 result 출력X!
                 System.out.println("결과: " + result);
             }
+            results[idx] = result;  //배열에 결과 저장
+            idx++;  //인덱스 증가
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String more = sc.next();  //더 계산할지말지 입력받기
@@ -54,7 +59,6 @@ public class App {
                 break;
             }
         }
-
 
     }
 }
