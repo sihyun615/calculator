@@ -1,13 +1,14 @@
 package calculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) {
-        int[] results = new int[10];  //10개의 연산 결과들을 저장할 배열
-        int idx = 0;  //배열 인덱스
+        List<Integer> results = new ArrayList<>(); // 연산 결과들을 저장할 리스트
 
         Scanner sc = new Scanner(System.in);
 
@@ -37,38 +38,38 @@ public class App {
                 case '/' :
                     if (num2 == 0){
                         System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                        continue; // 다음 반복으로 넘어감
                     }
-                    else {
-                        result = num1 / num2;
-                    }
+
+                    result = num1 / num2;
                     break;
                 default :
                     System.out.println("잘못된 연산자입니다.");
-                    return;
+                    continue; // 다음 반복으로 넘어감
             }
 
-            if(operator!='/' || num2!=0){  //나눗셈 연산에서 분모(두번째 정수)가 0인 경우 result 출력X!
-                System.out.println("결과: " + result);
-            }
+            System.out.println("결과: " + result);
 
-            if (idx >= results.length){  //idx값이 배열길이10이상의 값을 가지면(여기서는 idx값 10이면)
-                for (int i = 0; i < results.length - 1; i++) {
-                    results[i] = results[i + 1];  //배열의 값을 하나씩 앞당겨서 저장
+            results.add(result);  //results리스트에 연산결과 추가
+
+
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            if (Objects.equals(sc.next(), "remove")){  //입력받은 값이 "remove"이면
+                if (!results.isEmpty()) {
+                    results.remove(0);  //가장 먼저 저장된 결과값 삭제 (인덱스 0번째)
+                    System.out.println("가장 먼저 저장된 결과가 삭제되었습니다.");
+                } else {  //results리스트가 비어있으면
+                    System.out.println("저장된 결과가 없습니다.");
                 }
-                idx--;  //여기서는 idx값이 10에서 9가 될 것임
             }
-
-            results[idx] = result;  //배열에 결과 저장
-            idx++;  //인덱스 증가
-
 
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            String more = sc.next();  //더 계산할지말지 입력받기
-            if (Objects.equals(more, "exit")){  //입력받은 값이 "exit"이면 while문 종료
+            if (Objects.equals(sc.next(), "exit")){  //입력받은 값이 "exit"이면 while문 종료
                 break;
             }
         }
+
 
     }
 }
