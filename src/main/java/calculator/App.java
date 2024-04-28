@@ -50,8 +50,18 @@ public class App {
             if(operator!='/' || num2!=0){  //나눗셈 연산에서 분모(두번째 정수)가 0인 경우 result 출력X!
                 System.out.println("결과: " + result);
             }
+
+            if (idx >= results.length){  //idx값이 배열길이10이상의 값을 가지면(여기서는 idx값 10이면)
+                for (int i = 0; i < results.length - 1; i++) {
+                    results[i] = results[i + 1];  //배열의 값을 하나씩 앞당겨서 저장
+                }
+                idx--;  //여기서는 idx값이 10에서 9가 될 것임
+            }
+
             results[idx] = result;  //배열에 결과 저장
             idx++;  //인덱스 증가
+
+
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String more = sc.next();  //더 계산할지말지 입력받기
