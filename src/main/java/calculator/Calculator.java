@@ -3,9 +3,15 @@ package calculator;
 import java.util.ArrayList;
 
 public class Calculator {
-    /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 (외부에서 직접접근 불가!)*/
+    /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 (외부에서 직접접근 불가!)*/
     // ArrayList : 동적 배열이라 크기를 지정하지 않아도 됨
-    private ArrayList<Integer> results = new ArrayList<>(); // 연산 결과들을 저장할 리스트
+    private ArrayList<Integer> results;
+
+
+    // 생성자
+    public Calculator(){
+        this.results = new ArrayList<>(); // 연산 결과들을 저장할 리스트가 생성자 통해 초기화
+    }
 
 
     /* 나눗셈에서 분모에 0이 들어오거나, 연산자 기호가 잘못 들어온 경우
