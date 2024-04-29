@@ -5,12 +5,21 @@ import java.util.ArrayList;
 public class Calculator {
     /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 (외부에서 직접접근 불가!)*/
     // ArrayList : 동적 배열이라 크기를 지정하지 않아도 됨
-    private ArrayList<Integer> results;
+    private ArrayList<Integer> results;  //연산결과들 저장할 리스트
+    private ArrayList<Double> areaResults;  //원넓이값들 저장할 리스트
+
+
+    //static: 클래스 멤버 선언
+    //final: 수정 불가
+    //static final : 상수 (유일하며 불변인 값)
+    static final double PI = 3.14;  //PI는 3.14로 고정된 값임
+
 
 
     // 생성자
     public Calculator(){
         this.results = new ArrayList<>(); // 연산 결과들을 저장할 리스트가 생성자 통해 초기화
+        this.areaResults = new ArrayList<>(); // 원넓이값들을 저장할 리스트가 생성자 통해 초기화
     }
 
 
@@ -76,4 +85,39 @@ public class Calculator {
         }
     }
 
+
+
+
+
+    //원의 넓이를 구하는 메서드
+    public double calculateCircleArea (double radius) throws Exception {
+        if (radius < 0){
+            throw new BadInputException("원지름값");  //예외처리
+        }
+
+        double area = PI * radius * radius;
+        areaResults.add(area);
+        return area;
+    }
+
+
+    // getter
+    public ArrayList<Double> getAreaResults(){
+        return areaResults;
+    }
+
+    // setter
+    public void setAreaResults (ArrayList<Double> areaResults){
+        this.areaResults = areaResults;
+    }
+
+
+    //저장된 원넓이값들 조회 메서드
+    public void inquiryAreaResults() {
+        for (double value : areaResults) {  //향상된 for-each문
+            System.out.println(value);  //저장된 연산결과들 출력
+        }
+    }
 }
+
+
