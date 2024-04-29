@@ -9,7 +9,8 @@ public class App {
 
         // Calculator클래스를 상속받은 두 클래스의 각각의 인스턴스 생성
         ArithmeticCalculator arithmeticCal = new ArithmeticCalculator(
-                new AddOperator(), new SubtractOperator(), new MultiplyOperator(), new DivideOperator());
+                new AddOperator(), new SubtractOperator(), new MultiplyOperator(),
+                new DivideOperator(), new ModOperator());
         CircleCalculator circleCal = new CircleCalculator();
 
         Scanner sc = new Scanner(System.in);

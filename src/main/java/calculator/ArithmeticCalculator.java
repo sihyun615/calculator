@@ -2,23 +2,26 @@ package calculator;
 
 public class ArithmeticCalculator extends Calculator {  // Calculator클래스를 상속받음
 
-    // ArithmeticCalculator클래스는 아래의 사칙연산 클래스들을 포함함.
-    private final AddOperator addOperator;
-    private final SubtractOperator subtractOperator;
-    private final MultiplyOperator multiplyOperator;
-    private final DivideOperator divideOperator;
+    // Operator 인터페이스
+    private final Operator addOperator;
+    private final Operator subtractOperator;
+    private final Operator multiplyOperator;
+    private final Operator divideOperator;
+    private final Operator modOperator;
 
 
     // ArithmeticCalculator 생성자를 통해 사칙연산 클래스들 초기화
-    public ArithmeticCalculator(AddOperator addOperator,
-                                SubtractOperator subtractOperator,
-                                MultiplyOperator multiplyOperator,
-                                DivideOperator divideOperator){
+    public ArithmeticCalculator(Operator addOperator,
+                                Operator subtractOperator,
+                                Operator multiplyOperator,
+                                Operator divideOperator,
+                                Operator modOperator){
 
         this.addOperator = addOperator;
         this.subtractOperator = subtractOperator;
         this.multiplyOperator = multiplyOperator;
         this.divideOperator = divideOperator;
+        this.modOperator = modOperator;
     }
 
 
@@ -41,8 +44,13 @@ public class ArithmeticCalculator extends Calculator {  // Calculator클래스�
                 if (num2 == 0){  //분모값으로 0이 입력된 경우 예외클래스로 throw
                     throw new BadInputException("분모값");  //예외처리
                 }
-
                 result = divideOperator.operate(num1,num2);
+                break;
+            case '%' :
+                if (num2 == 0){  //분모값으로 0이 입력된 경우 예외클래스로 throw
+                    throw new BadInputException("나누는 값");  //예외처리
+                }
+                result = modOperator.operate(num1,num2);
                 break;
             default :  //잘못된 연산자값이 입력된 경우 예외클래스로 throw
                 throw new BadInputException("연산자값");  //예외처리
