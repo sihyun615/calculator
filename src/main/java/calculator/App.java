@@ -39,8 +39,8 @@ public class App {
 
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             if (Objects.equals(sc.next(), "remove")){  //입력받은 값이 "remove"이면
-                if (!calculator.results.isEmpty()) {  //calculator의 results 필드에 접근
-                    calculator.results.remove(0);  //가장 먼저 저장된 결과값 삭제 (인덱스 0번째)
+                if (!calculator.getResults().isEmpty()) {  //calculator의 필드에 간접접근(Getter)
+                    calculator.getResults().remove(0);  //가장 먼저 저장된 결과값 삭제 (인덱스 0번째)
                     System.out.println("가장 먼저 저장된 결과가 삭제되었습니다.");
                 } else {  //results리스트가 비어있으면
                     System.out.println("저장된 결과가 없습니다.");
@@ -50,8 +50,8 @@ public class App {
 
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if (Objects.equals(sc.next(), "inquiry")){  //입력받은 값이 "inquiry"이면
-                for (int value : calculator.results) { //   //calculator의 results 필드에 접근, 저장된 연산결과들 출력
-                    System.out.println(value);
+                for (int value : calculator.getResults()) { //calculator의 results 필드에 간접접근(Getter)
+                    System.out.println(value);  //저장된 연산결과들 출력
                 }
             }
 
