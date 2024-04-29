@@ -39,12 +39,7 @@ public class App {
 
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             if (Objects.equals(sc.next(), "remove")){  //입력받은 값이 "remove"이면
-                if (!calculator.getResults().isEmpty()) {  //calculator의 필드에 간접접근(Getter)
-                    calculator.getResults().remove(0);  //가장 먼저 저장된 결과값 삭제 (인덱스 0번째)
-                    System.out.println("가장 먼저 저장된 결과가 삭제되었습니다.");
-                } else {  //results리스트가 비어있으면
-                    System.out.println("저장된 결과가 없습니다.");
-                }
+                calculator.removeResult();  // Calculator 클래스의 removeResult메서드 사용
             }
 
 

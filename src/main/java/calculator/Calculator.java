@@ -51,4 +51,15 @@ public class Calculator {
         this.results = results;
     }
 
+
+    //가장 먼저 저장된 결과값 삭제 메서드
+    public void removeResult() {
+        if (!results.isEmpty()) {
+            results.remove(0);  //가장 먼저 저장된 결과값 삭제 (인덱스 0번째)
+            System.out.println("가장 먼저 저장된 결과가 삭제되었습니다.");
+        } else {  //results리스트가 비어있으면
+            System.out.println("저장된 결과가 없습니다.");
+        }
+    }
+
 }
