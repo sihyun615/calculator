@@ -7,17 +7,18 @@ public class App {
 
     public static void main(String[] args) {
 
-        // Calculator 인스턴스 생성
-        Calculator calculator = new Calculator();
+        // Calculator클래스를 상속받은 두 클래스의 각각의 인스턴스 생성
+        ArithmeticCalculator arithmeticCal = new ArithmeticCalculator();
+        CircleCalculator circleCal = new CircleCalculator();
 
         Scanner sc = new Scanner(System.in);
 
 
         while(true) {  //무한루프
-            System.out.println("1. 사칙연산 진행");
+            System.out.println("\n1. 사칙연산 진행");
             System.out.println("2. 원의 넓이 구하기");
             System.out.print("위의 메뉴 중 한 가지를 골라 숫자를 입력하세요: ");
-            int menu = sc.nextInt();
+            int menu = sc.nextInt();  //입력 정수 저장
 
             switch (menu) {
                 case 1:  //1번 사칙연산 진행을 선택한 경우
@@ -31,9 +32,9 @@ public class App {
                     char operator = sc.next().charAt(0);
 
 
-                    // Calculator 클래스의 calculate 메서드 호출
+                    // ArithmeticCalculator 클래스의 calculate 메서드 호출
                     try {
-                        int result = calculator.calculate(operator, num1, num2);
+                        double result = arithmeticCal.calculate(operator, num1, num2);
                         System.out.println("결과 : " + result);
                     } catch (Exception e) {  //예외처리
                         System.out.println("오류: " + e.getMessage());
@@ -42,14 +43,14 @@ public class App {
 
                     System.out.println("\n가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
                     if (Objects.equals(sc.next(), "remove")) {  //입력받은 값이 "remove"이면
-                        calculator.removeResult();  // Calculator 클래스의 removeResult메서드 사용
+                        arithmeticCal.removeResult();  // ArithmeticCalculator 클래스의 removeResult메서드 사용
                     }
 
 
                     System.out.println("\n저장된 연산결과들을 조회하시겠습니까? (inquiry 입력 시 조회)");
                     if (Objects.equals(sc.next(), "inquiry")) {  //입력받은 값이 "inquiry"이면
                         System.out.println("\n저장된 연산결과들을 조회합니다.");
-                        calculator.inquiryResults();  // 저장된 연산결과값들 출력
+                        arithmeticCal.inquiryResults();  //Calculator 클래스의 inquiryResults메서드 상속받아 사용
                     }
 
                     break;  //switch문에서 빠져나감
@@ -61,9 +62,9 @@ public class App {
                     System.out.print("\n원의 반지름을 입력하세요: ");
                     double radius = sc.nextDouble();  //입력 저장
 
-                    // Calculator 클래스의 calculateCircleArea 메서드 호출
+                    // CircleCalculator 클래스의 calculateCircleArea 메서드 호출
                     try {
-                        double areaResult = calculator.calculateCircleArea(radius);
+                        double areaResult = circleCal.calculateCircleArea(radius);
                         System.out.println("결과 : " + areaResult);
                     } catch (Exception e) {  //예외처리
                         System.out.println("오류: " + e.getMessage());
@@ -71,7 +72,7 @@ public class App {
 
 
                     System.out.println("\n저장된 원의 넓이 값들을 조회합니다.");
-                    calculator.inquiryAreaResults();  //저장된 원의 널이 결과값들 출력
+                    circleCal.inquiryResults();  //Calculator 클래스의 inquiryResults메서드 상속받아 사용
 
                     break;  //switch문에서 빠져나감
 
