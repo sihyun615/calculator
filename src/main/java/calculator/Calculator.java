@@ -11,8 +11,7 @@ public class Calculator {
     /* 나눗셈에서 분모에 0이 들어오거나, 연산자 기호가 잘못 들어온 경우
       적합한 Exception 클래스를 생성하여 throw (매개변수로 해당 오류 내용을 전달)*/
     public int calculate(char operator, int num1, int num2) throws Exception {
-        /* 위 요구사항에 맞게 구현 */
-        /* return 연산 결과 */
+
         int result = 0;
         switch (operator) {  //operator의 종류 : +,-,*,/
             case '+' :
@@ -36,7 +35,6 @@ public class Calculator {
         }
 
 
-        System.out.println("결과: " + result);
         results.add(result);  //results리스트에 연산결과 추가
 
         return result;
