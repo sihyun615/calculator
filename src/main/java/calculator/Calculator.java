@@ -62,4 +62,12 @@ public class Calculator {
         }
     }
 
+
+    //저장된 연산 결과들 조회 메서드
+    public void inquiryResults() {
+        for (int value : results) {  //향상된 for-each문
+            System.out.println(value);  //저장된 연산결과들 출력
+        }
+    }
+
 }

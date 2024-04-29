@@ -45,9 +45,7 @@ public class App {
 
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if (Objects.equals(sc.next(), "inquiry")){  //입력받은 값이 "inquiry"이면
-                for (int value : calculator.getResults()) { //calculator의 results 필드에 간접접근(Getter)
-                    System.out.println(value);  //저장된 연산결과들 출력
-                }
+                calculator.inquiryResults();  // Calculator 클래스의 inquiryResults메서드 사용
             }
 
 
