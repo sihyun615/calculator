@@ -8,7 +8,8 @@ public class App {
     public static void main(String[] args) {
 
         // Calculator클래스를 상속받은 두 클래스의 각각의 인스턴스 생성
-        ArithmeticCalculator arithmeticCal = new ArithmeticCalculator();
+        ArithmeticCalculator arithmeticCal = new ArithmeticCalculator(
+                new AddOperator(), new SubtractOperator(), new MultiplyOperator(), new DivideOperator());
         CircleCalculator circleCal = new CircleCalculator();
 
         Scanner sc = new Scanner(System.in);
