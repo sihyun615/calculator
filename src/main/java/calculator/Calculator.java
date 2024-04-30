@@ -28,8 +28,12 @@ public abstract class Calculator {
 
     // 저장된 값들을 조회하는 메서드
     public void inquiryResults() {
-        for (double value : saveResults) {  //향상된 for-each문
-            System.out.println(value);  //저장된 연산결과들 출력
+        if (!saveResults.isEmpty()) {
+            for (double value : saveResults) {  //향상된 for-each문
+                System.out.println(value);  //저장된 연산결과들 출력
+            }
+        } else {  //saveResults리스트가 비어있으면
+            System.out.println("저장된 결과가 없습니다.");
         }
     }
 

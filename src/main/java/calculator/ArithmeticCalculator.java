@@ -28,38 +28,47 @@ public class ArithmeticCalculator extends Calculator {  // Calculator클래스�
     /* 나눗셈에서 분모에 0이 들어오거나, 연산자 기호가 잘못 들어온 경우
       적합한 Exception 클래스를 생성하여 throw (매개변수로 해당 오류 내용을 전달)*/
     public double calculate(char operator, int num1, int num2) throws Exception {
-
         double result = 0;
-        switch (operator) {  //operator의 종류 : +,-,*,/
-            case '+' :
-                result = addOperator.operate(num1,num2);
-                break;
-            case '-' :
-                result = subtractOperator.operate(num1,num2);
-                break;
-            case '*' :
-                result = multiplyOperator.operate(num1,num2);
-                break;
-            case '/' :
-                if (num2 == 0){  //분모값으로 0이 입력된 경우 예외클래스로 throw
-                    throw new BadInputException("분모값");  //예외처리
+        boolean validOperator = false;
+
+        for (OperatorType type : OperatorType.values()) {
+            if (type.getOperator() == operator) {
+                validOperator = true; // 연산자를 발견했으므로 foundOperator를 true로 설정합니다.
+                switch (type) {
+                    case ADD:
+                        result = addOperator.operate(num1,num2);
+                        break;
+                    case SUBTRACT:
+                        result = subtractOperator.operate(num1,num2);
+                        break;
+                    case MULTIPLY:
+                        result = multiplyOperator.operate(num1,num2);
+                        break;
+                    case DIVIDE:
+                        if (num2 == 0){  //분모값으로 0이 입력된 경우 예외클래스로 throw
+                            throw new BadInputException("분모값");  //예외처리
+                        }
+                        result = divideOperator.operate(num1,num2);
+                        break;
+                    case MOD:
+                        if (num2 == 0){  //분모값으로 0이 입력된 경우 예외클래스로 throw
+                            throw new BadInputException("나누는 값");  //예외처리
+                        }
+                        result = modOperator.operate(num1,num2);
+                        break;
                 }
-                result = divideOperator.operate(num1,num2);
-                break;
-            case '%' :
-                if (num2 == 0){  //분모값으로 0이 입력된 경우 예외클래스로 throw
-                    throw new BadInputException("나누는 값");  //예외처리
-                }
-                result = modOperator.operate(num1,num2);
-                break;
-            default :  //잘못된 연산자값이 입력된 경우 예외클래스로 throw
-                throw new BadInputException("연산자값");  //예외처리
+            }
+        }
+
+        if (!validOperator) {
+            throw new BadInputException("연산자값"); // enum값에 해당하는 연산자 외의 입력 시 예외처리
         }
 
         saveResults.add(result);  // Calculator클래스의 saveResults리스트에 연산결과 추가
 
         return result;
     }
+
 
 
 
