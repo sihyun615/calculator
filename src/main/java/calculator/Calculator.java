@@ -31,7 +31,7 @@ public abstract class Calculator<T> {
     public void inquiryResults() {
         if (!saveResults.isEmpty()) {
             for (T value : saveResults) {  //향상된 for-each문
-                System.out.println(value);  //저장된 연산결과들 출력
+                System.out.println(value);  //저장된 결과들 출력
             }
         } else {  //saveResults리스트가 비어있으면
             System.out.println("저장된 결과가 없습니다.");

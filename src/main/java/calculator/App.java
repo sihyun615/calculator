@@ -8,7 +8,9 @@ public class App {
     public static void main(String[] args) {
 
         // Calculator클래스를 상속받은 두 클래스의 각각의 인스턴스 생성
-        ArithmeticCalculator<Integer> arithmeticCal = new ArithmeticCalculator<>(
+
+        //ArithmeticCalculator 제네릭 클래스 타입 설정
+        ArithmeticCalculator<Double> arithmeticCal = new ArithmeticCalculator<>(
                 new AddOperator<>(), new SubtractOperator<>(), new MultiplyOperator<>(),
                 new DivideOperator<>(), new ModOperator<>());
         CircleCalculator circleCal = new CircleCalculator();
@@ -31,7 +33,7 @@ public class App {
                             sc.next();  // 잘못 입력된 값 여기서 쓰고버리기
                             continue;  // 다음 반복으로 (case1 첫부분)
                         }
-                        int num1 = sc.nextInt();  //입력 저장
+                        double num1 = sc.nextDouble();  //입력받을 변수타입 설정
 
                         System.out.print("두 번째 숫자를 입력하세요: ");
                         if (!(sc.hasNextInt()||sc.hasNextLong()||sc.hasNextFloat()||sc.hasNextDouble())) {
@@ -39,7 +41,7 @@ public class App {
                             sc.next();  // 잘못 입력된 값 여기서 쓰고버리기
                             continue;  // 다음 반복으로 (case1 첫부분)
                         }
-                        int num2 = sc.nextInt();  //입력 저장
+                        double num2 = sc.nextDouble();  //입력받을 변수타입 설정
 
                         System.out.print("사칙연산 기호를 입력하세요: ");
                         //next()의 반환값이 string이므로 charAt(0)으로 char로 바꾼후 0번째 char 반환
@@ -66,9 +68,15 @@ public class App {
                             arithmeticCal.inquiryResults();  //Calculator 클래스의 inquiryResults메서드 상속받아 사용
                         }
 
-                        break;  //switch문에서 빠져나감
+                        System.out.println("\n저장된 연산결과들 중 현재 결과값보다 큰 값을 조회하시겠습니까? (inquiry 입력 시 조회)");
+                        if (Objects.equals(sc.next(), "inquiry")) {  //입력받은 값이 "inquiry"이면
+                            System.out.println("저장된 연산결과들 중 현재 결과값보다 큰 값들을 조회합니다.");
+                            arithmeticCal.inquiryGreaterResults();  //ArithmeticCalculator 클래스의 inquiryGreaterResults메서드 사용
+                        }
+
+                        break;  //내부 while문에서 빠져나감
                     }
-                    break;
+                    break;  //switch문에서 빠져나감
 
 
 
@@ -94,9 +102,9 @@ public class App {
                         System.out.println("\n저장된 원의 넓이 값들을 조회합니다.");
                         circleCal.inquiryResults();  //Calculator 클래스의 inquiryResults메서드 상속받아 사용
 
-                        break;  //switch문에서 빠져나감
+                        break;  //내부 while문에서 빠져나감
                     }
-                    break;
+                    break;  //switch문에서 빠져나감
 
 
 
